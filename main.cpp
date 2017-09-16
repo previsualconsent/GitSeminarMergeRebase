@@ -40,7 +40,7 @@ int main (int argc, char *argv[])
             std::cin >> guess;
          }
 
-         if(!std::cin.fail() && min < guess && guess < max)
+         if(!std::cin.fail() && min <= guess && guess <= max)
             break;
       }
       std::cout << "Guess is " << guess << std::endl;
