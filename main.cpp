@@ -10,6 +10,8 @@ int main (int argc, char *argv[])
    int n_guesses = 0;
    int guess;
 
+   int min = 1;
+   int max = 100;
    bool end = false;
    while(!end)
    {
@@ -19,6 +21,7 @@ int main (int argc, char *argv[])
       // TODO: Validate Input
       if(guess == -1) return 0;
 
+   }
    std::cout << "You guessed my number in " << n_guesses << "guesses\n";
 
 }
