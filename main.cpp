@@ -9,10 +9,10 @@ int main (int argc, char *argv[])
    std::cout << "Can you guess it?\n";
 
    int n_guesses = 0;
-   int guess;
-
    int min = 1;
    int max = 100;
+   int guess;
+
    bool end = false;
    while(!end)
    {
@@ -43,9 +43,23 @@ int main (int argc, char *argv[])
          if(!std::cin.fail() && min <= guess && guess <= max)
             break;
       }
-      std::cout << "Guess is " << guess << std::endl;
       n_guesses++;
 
+      if(min == max && guess == max)
+      {
+         std::cout << "You got it!\n";
+         end == true;
+      }
+      else if( (guess - min) > (max - guess)) 
+      {
+         std:: cout << "Too High\n";
+         max = guess - 1;
+      }
+      else
+      {
+         std:: cout << "Too Low\n";
+         min = guess + 1;
+      }
    }
    std::cout << "You guessed my number in " << n_guesses << "guesses\n";
 
