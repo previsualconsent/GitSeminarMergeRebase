@@ -1,4 +1,5 @@
 #include <iostream>
+#include<limits>
 
 int main (int argc, char *argv[])
 {
@@ -17,9 +18,33 @@ int main (int argc, char *argv[])
    {
       std::cout << "Guess my number(" << min << "-" << max << "): ";
       std::cin >> guess;
+      while(1)
+      {
+         if(std::cin.fail())
+         {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Bad Input\n";
+            std::cout << "Guess my number(" << min << "-" << max << "): ";
+            std::cin >> guess;
+         }
+         else if(guess == -1)
+         {
+            std::cout << "Exitting...\n";
+            return 0;
+         }
+         else if(min > guess || max < guess)
+         {
+            std::cout << "Out of Range\n";
+            std::cout << "Guess my number(" << min << "-" << max << "): ";
+            std::cin >> guess;
+         }
+
+         if(!std::cin.fail() && min <= guess && guess <= max)
+            break;
+      }
+      std::cout << "Guess is " << guess << std::endl;
       n_guesses++;
-      // TODO: Validate Input
-      if(guess == -1) return 0;
 
       if(min == max && guess == max)
       {
